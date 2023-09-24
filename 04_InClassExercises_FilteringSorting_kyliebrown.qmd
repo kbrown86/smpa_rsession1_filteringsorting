@@ -46,6 +46,7 @@ impeach
 
 1) The column "for_impeachment" indicates whether the member has publicly called for an impeachment inquiry. Filter to return only the ones where the answer is NO.
 
+#filter impeachment that said no
 filter(mpeach, for_impeachment == "NO")
 
 ```{r}
@@ -59,6 +60,7 @@ filter(mpeach, for_impeachment == "NO")
 
 2) Filter to return only results where a member is both against impeachment, and comes from a district that President Trump won in 2016 (which is noted in the "p16winningparty" column).
 
+#filter impeachment that said no and then Trump, who is Republican
 mpeach %>%
 filter(for_impeachment == "NO") %>%
 filter(p16winningparty == "R")
@@ -74,6 +76,7 @@ filter(p16winningparty == "R")
 
 3) Filter for only results where a member is against impeachment, comes from a district that President Trump won in 2016 (which is noted in the "p16winningparty" column), and also comes from a district that Mitt Romney won in 2012 ("p12winningparty").
 
+#filter impeachment answers as no, then Trump (R) and Romney, who is a Republican
 mpeach %>%
 filter(for_impeachment == "NO") %>%
 filter(p16winningparty == "R") %>%
@@ -90,6 +93,12 @@ filter(p12winningparty == "R")
 
 4) Filter for only results from September 2019 where a member is a YES for impeachment.
 
+#filter for Sept month (9) and year (2019) and yes impeachment
+mpeach %>%
+  filter(date_month == 9) %>%
+  filter(date_year == 2019) %>%
+  filter(for_impeachment == "YES")
+
 ```{r}
 
 
@@ -100,6 +109,9 @@ filter(p12winningparty == "R")
 
 5) Filter for only results where a member is a YES for impeachment and is from a district where Clinton won more than 70 percent of the vote in 2016 (found in column "clinton_percent").
 
+mpeach %>%
+  filter(for_impeachment == "YES", clinton_percent =>) %>%
+  filter(clinton_percent => 70)
 ```{r}
 
 
